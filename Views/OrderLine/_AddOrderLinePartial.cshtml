@@ -1,0 +1,59 @@
+﻿@model OrdersManagement.Models.ViewModels.OrderLineViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title">Add/Edit Order Line</h5>
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="addOrderLineForm">
+        <input type="hidden" name="OrderNumber" value="@Model.OrderNumber" />
+        <input type="hidden" name="LineNumber" value="@Model.LineNumber" />
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <label class="col-md-6" for="ProductCode">Product Code:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="ProductCode" value="@Model.ProductCode" name="ProductCode" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <label class="col-md-6" for="ProductType">Product Type:</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.ProductType, (List<SelectListItem>)ViewBag.DropdownItems, "Select ProductType", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <label class="col-md-6" for="CostPrice">Cost Price:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="CostPrice" value="@Model.CostPrice" name="CostPrice" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <label class="col-md-6" for="SalesPrice">Sales Price:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="SalesPrice" name="SalesPrice" value="@Model.SalesPrice" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <label class="col-md-6" for="Quantity">Quantity:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="Quantity" name="Quantity" value="@Model.Quantity" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="saveOrderLine" onclick="GlobalCalls.SaveNewOrderLine()">Save</button>
+    </form>
+</div>

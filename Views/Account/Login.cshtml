@@ -1,0 +1,76 @@
+﻿@model Hermes.Models.ViewModels.Account.LoginViewModel
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>@ViewData["Title"]</h1>
+<div>
+    <section>
+        <div class="row d-flex justify-content-center col-12">
+            <div class="col-4 border border-primary rounded m-20">
+
+                <form id="account" action="/Account/Login" method="post" enctype="multipart/form-data" class="py-5">
+                    <div class="d-flex justify-content-center">
+                        <i class="icon-map-marker icon-4x text-success"></i>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    </div>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        foreach (Microsoft.AspNetCore.Mvc.ModelBinding.ModelError error in ViewData.ModelState.Values.SelectMany(x => x.Errors))
+                        {
+                            <div>
+                                <span class="text-danger">@error.ErrorMessage</span>
+                            </div>
+                            <p></p>
+                            break;
+                        }
+                    }
+
+                    <div class="form-group">
+                        <input id="Email" name="Email" for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label class="form-label">Email</label>
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input id="Password" type="password" name="Password" asp-for="@Model.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label class="form-label">Password</label>
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <i class="icon-map-marker icon-4x text-success"></i>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <label class="custom-control-label">
+                                <input class="custom-control-input" id="RememberMe" name="RememberMe" type="checkbox" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-success btn-block" id="loginButton">Sign in</button>
+                    </div>
+                    <div class="text-primary" id="loader" role="status" aria-hidden="true" style="display:none;">
+                        <div class="d-flex justify-content-center">
+                            <span class="sr-only">Loading...</span>
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("account").addEventListener("submit", function () {
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("loginButton").disabled = true;
+        });
+    </script>
+}

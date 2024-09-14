@@ -1,0 +1,28 @@
+﻿<div class="modal fade" id="editOrderLineModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal modal-dialog-centered" role="document" style="max-width: 800px; height: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Order Line</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="editOrderModalBody">
+                <!-- The form will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-1" style="padding-left:5px">
+                    <button type="button" class="btn btn-sm btn-primary " onclick="GlobalCalls.saveEditedOrderLine()">Save</button>
+                </div>
+                <div">
+                    <button data-bs-dismiss="modal" class="btn btn-sm btn-default pull-right  col-sm-1">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .custom-modal {
+        max-width: 800px;
+    }
+</style>
